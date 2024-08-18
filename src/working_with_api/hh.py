@@ -1,3 +1,4 @@
+from typing import Any
 import requests
 
 from src.working_with_api.abstract_parser import Parser
@@ -6,7 +7,7 @@ from src.working_with_api.abstract_parser import Parser
 class HH(Parser):
     """ Класс для работы с API HeadHunter """
     @staticmethod
-    def __connection_to_api(api_params):
+    def __connection_to_api(api_params: dict) -> Any:
         """Приватный метод для подключения к API"""
         url = "https://api.hh.ru/vacancies"
         headers = {"User-Agent": "HH-User-Agent"}
@@ -18,7 +19,7 @@ class HH(Parser):
         return response
 
     @classmethod
-    def load_vacancies(cls, keyword):
+    def load_vacancies(cls, keyword: str) -> list:
         """Метод для получения вакансий по ключевому слову"""
 
         params = {"text": keyword, "page": 0, "per_page": 100, "area": 113}
@@ -32,6 +33,6 @@ class HH(Parser):
         return vacancies
 
 
-if __name__ == "__main__":
-    res = HH.load_vacancies("python")
-    print(res)
+# if __name__ == "__main__":
+#     res = HH.load_vacancies("python")
+#     print(res)
