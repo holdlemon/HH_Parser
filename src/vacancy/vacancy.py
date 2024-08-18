@@ -17,8 +17,10 @@ class Vacancy:
             if attr in data:
                 setattr(self, attr, data[attr])
         self.salary = self.__validate_salary(self.salary)
-        if not hasattr(self, "requirement") or self.requirement is None:
-            self.requirement = "Описание отсутствует"
+        # if "requirement" is not None:
+        self.requirement = data["snippet"]["requirement"]
+        # else:
+        #     self.requirement = "Описание отсутствует"
 
     def __str__(self) -> str:
         """ Получение информации о вакансии """
